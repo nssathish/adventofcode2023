@@ -1,6 +1,16 @@
 import java.util.HashMap;
 
 public class AocUtility {
+    public static boolean tryParse(char ch) {
+        try {
+            Integer.parseInt ( Character.toString ( ch ) );
+            return true;
+        }
+        catch(Exception e) {
+            return false;
+        }
+    }
+
     private static HashMap<String, String[]> numbers = new HashMap<> (  ) {{
         put ( "on", new String[] {"one", "1"} );
         put ( "tw", new String[] {"two", "2"} );
@@ -12,16 +22,6 @@ public class AocUtility {
         put ( "ei", new String[] {"eight", "8"} );
         put ( "ni", new String[] {"nine", "9"} );
     }};
-
-    public static boolean tryParse(char ch) {
-        try {
-            Integer.parseInt ( Character.toString ( ch ) );
-            return true;
-        }
-        catch(Exception e) {
-            return false;
-        }
-    }
     public static boolean tryParse(String str) {
         if (str.length () > 1)
             throw new IllegalArgumentException ( "String length can be 1" );
@@ -35,21 +35,18 @@ public class AocUtility {
         }
     }
 
-    public static String parseNumberFromWord(String str, int index) {
-        if (index >= str.length ())
-            return "";
+    public static String[] parseNumberFromWord(String str, int index) {
+        if (index >= str.length () - 1)
+            return new String[] { "", "" };
 
-        var startCharacter = str.charAt ( index ) + str.charAt ( index + 1 );
+        var startCharacter = Character.toString(str.charAt ( index )) + str.charAt(index + 1);
         var potentialItem = numbers.getOrDefault ( startCharacter, new String[] { "", "" } );
         var potentialNumberWord = potentialItem[0];
-        var potentialNumber = potentialItem[1];
-        for (int i = index, j = 0; i < potentialNumberWord.length () && i < str.length (); i++,j++) {
-            if (str.charAt ( i ) != potentialNumberWord.charAt ( j ))
-            {
-                potentialNumber = "";
-                break;
+        for (int i = index, j = 0; j < potentialNumberWord.length () && i < str.length (); i++,j++) {
+            if (str.charAt ( i ) != potentialNumberWord.charAt ( j )) {
+                return new String[] {"", ""};
             }
         }
-        return potentialNumber;
+        return potentialItem;
     }
 }
