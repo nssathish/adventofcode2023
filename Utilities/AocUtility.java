@@ -1,6 +1,23 @@
+package Utilities;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Scanner;
 
 public class AocUtility {
+    private String[] numberStrings = new String[] {
+            "one",
+            "two",
+            "three",
+            "four",
+            "five",
+            "six",
+            "seven",
+            "eight",
+            "nine"
+    };
     public static boolean tryParse(char ch) {
         try {
             Integer.parseInt ( Character.toString ( ch ) );
@@ -48,5 +65,34 @@ public class AocUtility {
             }
         }
         return potentialItem;
+    }
+
+    public static String[] cleanAnomalies(String[] input) {
+        for(int i = 0; i < input.length; i++) {
+            var str = input[i];
+            str = str.replaceAll ( "one", "1" );
+            str = str.replaceAll ( "two", "2" );
+            str = str.replaceAll ( "three", "3" );
+            str = str.replaceAll ( "four", "4" );
+            str = str.replaceAll ( "five", "5" );
+            str = str.replaceAll ( "six", "6" );
+            str = str.replaceAll ( "seven", "7" );
+            str = str.replaceAll ( "eight", "8" );
+            str = str.replaceAll ( "nine", "9" );
+
+            input[i] = str;
+        }
+        return input;
+    }
+
+    public static String[] getInputFromFile(String path) throws FileNotFoundException {
+        var input = new ArrayList<String> ();
+        var file = new File (path);
+        var fileScanner = new Scanner ( file );
+        while(fileScanner.hasNextLine ()) {
+            input.add ( fileScanner.nextLine () );
+        }
+
+        return input.toArray ( new String[input.size ()] );
     }
 }
