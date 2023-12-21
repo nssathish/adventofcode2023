@@ -4,7 +4,7 @@ import java.io.FileNotFoundException;
 
 public class Problem2b {
     public static int solve() throws FileNotFoundException {
-        var inputScanner = Solution.getScanner ( "input/problem2.txt" );
+        var inputScanner = Solution.getScanner ( "input/problem2/problem2.txt" );
         int gamePower = 0;
 
         while (inputScanner.hasNextLine ()) {

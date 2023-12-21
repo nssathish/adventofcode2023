@@ -7,17 +7,6 @@ import java.util.HashMap;
 import java.util.Scanner;
 
 public class AocUtility {
-    private String[] numberStrings = new String[] {
-            "one",
-            "two",
-            "three",
-            "four",
-            "five",
-            "six",
-            "seven",
-            "eight",
-            "nine"
-    };
     public static boolean tryParse(char ch) {
         try {
             Integer.parseInt ( Character.toString ( ch ) );
@@ -28,7 +17,7 @@ public class AocUtility {
         }
     }
 
-    private static HashMap<String, String[]> numbers = new HashMap<> (  ) {{
+    private static final HashMap<String, String[]> numbers = new HashMap<> (  ) {{
         put ( "on", new String[] {"one", "1"} );
         put ( "tw", new String[] {"two", "2"} );
         put ( "th", new String[] {"three", "3"} );
@@ -93,6 +82,6 @@ public class AocUtility {
             input.add ( fileScanner.nextLine () );
         }
 
-        return input.toArray ( new String[input.size ()] );
+        return input.toArray ( new String[0] );
     }
 }

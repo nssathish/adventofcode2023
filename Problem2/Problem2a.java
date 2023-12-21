@@ -10,7 +10,7 @@ import static Problem2.Solution.*;
 
 public class Problem2a {
     public static int solve() throws FileNotFoundException {
-        var inputScanner = Solution.getScanner ( "input/problem2.txt" );
+        var inputScanner = Solution.getScanner ( "input/problem2/problem2.txt" );
         var gameSum = 0;
         for (int gameIteration = 1; inputScanner.hasNextLine (); gameIteration++) {
             var draws = Solution.splitToDraws( inputScanner.nextLine () );
